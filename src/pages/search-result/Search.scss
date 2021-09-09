@@ -38,20 +38,37 @@
       .left {
         display: flex;
         align-items: center;
-
+        
         .left-side {
           display: flex;
           flex-direction: column;
           margin-right: 5rem;
 
           .circle {
-            height: 4rem;
-            width: 4rem;
+            height: 5rem;
+            width: 5rem;
             border-radius: 50%;
-            background-color: #c4c4c4;
+
+            .avatar {
+              height: 100%;
+              width: 100%;
+              border-radius: 50%;
+            }
           }
+        }
+
+        .commit-message {
+          max-width: 40rem;
+          margin: 0 auto;
+          text-align: left;
         }
       }
     }
   }
-} 
+}
+
+.loading {
+  color: #18214D;
+  text-align: center;
+  font-size: 20px;
+}

@@ -18,20 +18,21 @@ const NavLinks = [
 
 const NavBar = () => {
   return (
-    <nav className='NavBar h-32 flex items-center px-40'>
+    <nav className='NavBar'>
       <NavLink to='/' className='brand-name'>
         CommitViewer
       </NavLink>
-      <div className='spacer' />
-      {NavLinks.map(({ _id, text, path }) => (
-        <NavLink
-          className={`${path === '/about' ? 'pr-16' : ''} text-xl text-black`}
-          key={_id}
-          to={path}
-        >
-          {text}
-        </NavLink>
-      ))}
+      <div className='links'>
+        {NavLinks.map(({ _id, text, path }) => (
+          <NavLink
+            className={`${path === '/about' ? 'pr-16' : ''} text-xl text-black`}
+            key={_id}
+            to={path}
+          >
+            {text}
+          </NavLink>
+        ))}
+      </div>
     </nav>
   )
 }

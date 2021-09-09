@@ -6,7 +6,7 @@
   padding: 0 12rem;
 
   .brand-name {
-    color: var(--dark1);
+    color: #18214D;
     font-weight: 700;
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -19,9 +19,24 @@
 
 .text-xl {
   font-size: 1.25rem;
-line-height: 1.75rem;
+  line-height: 1.75rem;
 }
 
 .text-black {
   color: #000;
+}
+
+@media screen and (max-width: 640px) {
+  .NavBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    height: 8rem;
+
+    .links {
+      padding-top: 1.14rem;
+    }
+  }
 }
