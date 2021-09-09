@@ -2,26 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 
-import SearchIcon from '../../components/vectors/SearchIcon'
+import Button from '../../components/buttons/Button'
+import SearchIcon from '../../components/search/SearchIcon'
+
 import { validateInput } from '../../utils/index'
 
 import './Search.scss'
-import FormField from '../../components/form-field/FormField'
 
 const SearchResultPage = ({ location, ...props }) => {
   const [searchQuery, setSearchQuery] = useState(location?.state?.search || '')
   const [commits, setCommits] = useState([])
   const [error, setError] = useState('')
-  // const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const getAllCommitts = async () => {
     try {
       const res = await axios.get(
         `https://api.github.com/repos/${searchQuery}/commits`
       )
-      setCommits(res)
+      setLoading(true)
+      setCommits(res.data)
     } catch (error) {
-      console.log({ error })
+      setError(error.message, 'something went wrong while requesting commits')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -44,6 +48,8 @@ const SearchResultPage = ({ location, ...props }) => {
     getAllCommitts()
   }, [])
 
+  if (error) return <h1>{error}</h1>
+
   return (
     <div className='SearchPage'>
       <nav className='flex h-32 items-center justify-center px-40 bg-gray3'>
@@ -53,74 +59,72 @@ const SearchResultPage = ({ location, ...props }) => {
         >
           CommitViewer
         </NavLink>
-        {/* <form onSubmit={handleSubmit} className='flex w-4/6 items-center'>
-          <div className='flex flex-1 justify-center items-center bg-gray2 rounded-lg'>
+        <form onSubmit={handleSubmit} className='form-container'>
+          <div className='input-field'>
             <SearchIcon className='m-2 ml-4' />
             <input
-              type='text'
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className='flex-1 px-2 py-4 bg-gray2 rounded-lg text-xl'
+              type='text'
+              className='inputText flex-1 px-2 py-4 bg-gray2 rounded-lg text-xl'
               placeholder='Eg. facebook/react'
             />
           </div>
-          <button
-            type='submit'
-            className='bg-orange1 text-xl font-semibold text-white py-4 px-6 ml-4 rounded-lg'
-          >
-            See commits 🚀
-          </button>
-        </form> */}
-        <FormField />
+          <Button label='See commits 🚀' />
+        </form>
       </nav>
       <p className='queryParams text-center my-9 text-4xl font-semibold text-dark2'>
         {searchQuery}
       </p>
-      <div className='search-result-container'>
-        <div className='result-container'>
-          <div className='left'>
-            <div className='left-side'>
-              <div className='circle' />
-              <p>gaearon</p>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div className='search-result-container'>
+          <div className='result-container'>
+            <div className='left'>
+              <div className='left-side'>
+                <div className='circle' />
+                <p>gaearon</p>
+              </div>
+              <p>Log all errors to console.error by default (#21130)</p>
             </div>
-            <p>Log all errors to console.error by default (#21130)</p>
+            <p>23:30 28/04/2021</p>
           </div>
-          <p>23:30 28/04/2021</p>
-        </div>
 
-        <div className='result-container'>
-          <div className='left'>
-            <div className='left-side'>
-              <div className='circle' />
-              <p>gaearon</p>
+          <div className='result-container'>
+            <div className='left'>
+              <div className='left-side'>
+                <div className='circle' />
+                <p>gaearon</p>
+              </div>
+              <p>Log all errors to console.error by default (#21130)</p>
             </div>
-            <p>Log all errors to console.error by default (#21130)</p>
+            <p>23:30 28/04/2021</p>
           </div>
-          <p>23:30 28/04/2021</p>
-        </div>
 
-        <div className='result-container'>
-          <div className='left'>
-            <div className='left-side'>
-              <div className='circle' />
-              <p>gaearon</p>
+          <div className='result-container'>
+            <div className='left'>
+              <div className='left-side'>
+                <div className='circle' />
+                <p>gaearon</p>
+              </div>
+              <p>Log all errors to console.error by default (#21130)</p>
             </div>
-            <p>Log all errors to console.error by default (#21130)</p>
+            <p>23:30 28/04/2021</p>
           </div>
-          <p>23:30 28/04/2021</p>
-        </div>
 
-        <div className='result-container'>
-          <div className='left'>
-            <div className='left-side'>
-              <div className='circle' />
-              <p>gaearon</p>
+          <div className='result-container'>
+            <div className='left'>
+              <div className='left-side'>
+                <div className='circle' />
+                <p>gaearon</p>
+              </div>
+              <p>Log all errors to console.error by default (#21130)</p>
             </div>
-            <p>Log all errors to console.error by default (#21130)</p>
+            <p>23:30 28/04/2021</p>
           </div>
-          <p>23:30 28/04/2021</p>
         </div>
-      </div>
+      )}
     </div>
   )
 }

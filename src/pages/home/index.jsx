@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react'
-import FormField from '../../components/form-field/FormField'
 
 import NavBar from '../../components/navbar/NavBar'
-import SearchIcon from '../../components/vectors/SearchIcon'
+import Button from '../../components/buttons/Button'
+import SearchIcon from '../../components/search/SearchIcon'
 
 import { validateInput } from '../../utils/index'
 
@@ -11,15 +10,19 @@ import './HomePage.scss'
 
 const SuggestedRepos = [
   {
+    id: 1,
     repo: 'django/django'
   },
   {
+    id: 2,
     repo: 'microsoft/vscode'
   },
   {
+    id: 3,
     repo: 'jezen/is-thirteen'
   },
   {
+    id: 4,
     repo: 'benawad/dogehouse'
   }
 ]
@@ -59,14 +62,29 @@ const HomePage = ({ history, ...props }) => {
         </p>
       </div>
       <div className='form-field-container max-w-5xl mx-auto'>
-        <FormField />
+        <form onSubmit={handleSubmit} className='form-container'>
+          <div className='input-field'>
+            <SearchIcon className='m-2 ml-4' />
+            <input
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              type='text'
+              className='inputText flex-1 px-2 py-4 bg-gray2 rounded-lg text-xl'
+              placeholder='Eg. facebook/react'
+            />
+          </div>
+          <Button label='See commits 🚀' />
+        </form>
       </div>
       <p className='suggestion text-center my-7 text-gray1 text-base'>
         Or pick one of these suggested repos
       </p>
       <div className='suggested-links max-w-5xl text-center mx-auto'>
-        {SuggestedRepos.map(({ repo }) => (
-          <span className='links bg-dark2 py-2 px-4 rounded-lg text-base mx-2.5 text-white'>
+        {SuggestedRepos.map(({ id, repo }) => (
+          <span
+            key={id}
+            className='links bg-dark2 py-2 px-4 rounded-lg text-base mx-2.5 text-white'
+          >
             {repo}
           </span>
         ))}
