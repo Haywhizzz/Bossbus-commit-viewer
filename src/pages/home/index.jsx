@@ -76,21 +76,10 @@ const HomePage = ({ history, ...props }) => {
           <Button label='See commits 🚀' />
         </form>
       </div>
-      {/* <p className='suggestion text-center my-7 text-gray1 text-base'>
-        Or pick one of these suggested repos
-      </p>
-      <div className='suggested-links max-w-5xl text-center mx-auto'>
+      <p className='suggestion'>Or pick one of these suggested repos</p>
+      <div className='suggested-links'>
         {SuggestedRepos.map(({ id, repo }) => (
-          <span
-            key={id}
-            className='links bg-dark2 py-2 px-4 rounded-lg text-base mx-2.5 text-white'
-          >
-            {repo}
-          </span>
+          <span key={id} className='suggested-link'>
         ))}
-      </div> */}
-    </div>
-  )
-}
-
+      </div>
 export default HomePage

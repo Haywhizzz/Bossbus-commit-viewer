@@ -71,5 +71,23 @@
         margin-top: 0.85rem;
       }
     }
+
+    .suggestion {
+      max-width: 13rem;
+      margin: 1.75rem auto;
+      line-height: 1.5;
+    }
+
+    .suggested-links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .suggested-link {
+        width: max-content;
+        margin-bottom: 1rem;
+      }
+    }
   }
 }
