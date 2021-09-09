@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { NavLink } from 'react-router-dom'
-import SearchIcon from '../../components/vectors/SearchIcon'
+import SearchIcon from '../../components/search/SearchIcon'
 
 const NavLinks = [
   {

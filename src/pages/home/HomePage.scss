@@ -14,7 +14,6 @@
     }
 
     .desc {
-      color: var(--gray1);
       font-size: 1.5rem;
       line-height: 2rem;
       max-width: 36rem;
@@ -55,7 +54,7 @@
 
 // responsive for mobile
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 640px) {
   .HomePage {
     .hero {
       margin-top: -1.5rem;
@@ -70,24 +69,6 @@
         max-width: 25rem;
         padding: 0 1rem;
         margin-top: 0.85rem;
-      }
-    }
-
-    .suggestion {
-      max-width: 13rem;
-      margin: 1.75rem auto;
-      line-height: 1.5;
-    }
-
-    .suggested-links {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      .suggested-link {
-        width: max-content;
-        margin-bottom: 1rem;
       }
     }
   }

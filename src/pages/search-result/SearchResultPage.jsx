@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 
 import Button from '../../components/buttons/Button'
-import SearchIcon from '../../components/vectors/SearchIcon'
+import SearchIcon from '../../components/search/SearchIcon'
 
 import { validateInput } from '../../utils/index'
 
@@ -15,7 +15,7 @@ const SearchResultPage = ({ location, ...props }) => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const getAllCommitts = async () => {
+  const getAllCommits = async () => {
     try {
       const res = await axios.get(
         `https://api.github.com/repos/${searchQuery}/commits?per_page=10`
@@ -36,7 +36,7 @@ const SearchResultPage = ({ location, ...props }) => {
     const validate = await validateInput(searchQuery)
 
     if (validate === true) {
-      getAllCommitts()
+      getAllCommits()
     } else {
       alert(
         'You need to include / to your query, check the placeholder text for guide'
@@ -45,7 +45,7 @@ const SearchResultPage = ({ location, ...props }) => {
   }
 
   useEffect(() => {
-    getAllCommitts()
+    getAllCommits()
   }, [])
 
   if (error) return <h1>{error}</h1>

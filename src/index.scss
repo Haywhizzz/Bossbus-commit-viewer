@@ -69,6 +69,18 @@ a {
   }
 }
 
+@media screen and (max-width: 640px) {
+  .form-container {
+    display: flex;
+    flex-direction: column;
+
+    .input-field {
+      width: 90%;
+    }
+  }
+}
+
+
 .m-2 {
   margin: 0.5rem;
 }
