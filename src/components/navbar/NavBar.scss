@@ -1,0 +1,42 @@
+.NavBar {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12rem;
+
+  .brand-name {
+    color: #18214D;
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+.pr-16 {
+  padding-right: 4rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-black {
+  color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  .NavBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    height: 8rem;
+
+    .links {
+      padding-top: 1.14rem;
+    }
+  }
+}
