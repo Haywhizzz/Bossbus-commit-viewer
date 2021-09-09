@@ -30,19 +30,11 @@
     margin: 0 auto;
 
     .result-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-bottom: 2.25rem;
-
-      .left {
-        display: flex;
-        align-items: center;
         
-        .left-side {
+        .author-info {
           display: flex;
           flex-direction: column;
-          margin-right: 5rem;
 
           .circle {
             height: 5rem;
@@ -58,17 +50,30 @@
         }
 
         .commit-message {
-          max-width: 40rem;
-          margin: 0 auto;
-          text-align: left;
+          // max-width: 40rem;
+          // margin: 0 auto;
+          // text-align: left;
         }
       }
     }
-  }
 }
 
 .loading {
   color: #18214D;
   text-align: center;
   font-size: 20px;
+}
+
+@media screen and (max-width: 640px) {
+  .SearchPage {
+    nav {
+      .brand-name {
+        margin-right: 0;
+      }
+    }
+
+    .search-result {
+      display: none;
+    }
+  }
 }

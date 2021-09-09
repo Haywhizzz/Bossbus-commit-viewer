@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
@@ -29,8 +30,6 @@ const SearchResultPage = ({ location, ...props }) => {
     }
   }
 
-  console.log({ commits })
-
   const handleSubmit = async e => {
     e.preventDefault()
     const validate = await validateInput(searchQuery)
@@ -48,18 +47,23 @@ const SearchResultPage = ({ location, ...props }) => {
     getAllCommits()
   }, [])
 
-  if (error) return <h1>{error}</h1>
+  if (error)
+    return (
+      <h2 style={{ color: 'red', textAlign: 'center', marginTop: '2rem' }}>
+        {error}
+      </h2>
+    )
 
   return (
     <div className='SearchPage'>
-      <nav className='flex h-32 items-center justify-center px-40 bg-gray3'>
+      <nav>
         <NavLink
           className='brand-name text-dark1 text-3xl font-bold mr-9'
           to='/'
         >
           CommitViewer
         </NavLink>
-        <form onSubmit={handleSubmit} className='form-container'>
+        <form onSubmit={handleSubmit} className='form-container search-result'>
           <div className='input-field'>
             <SearchIcon className='m-2 ml-4' />
             <input
@@ -73,28 +77,24 @@ const SearchResultPage = ({ location, ...props }) => {
           <Button label='See commits 🚀' />
         </form>
       </nav>
-      <p className='queryParams text-center my-9 text-4xl font-semibold text-dark2'>
-        {searchQuery}
-      </p>
+      <p className='queryParams'>{searchQuery}</p>
       {loading || commits.length === 0 ? (
         <h2 className='loading'>Loading...</h2>
       ) : (
         <div className='search-result-container'>
           {commits.map((commit, index) => (
             <div key={index} className='result-container'>
-              <div className='left'>
-                <div className='left-side'>
-                  <div className='circle'>
-                    <img
-                      src={commit.author.avatar_url}
-                      alt=''
-                      className='avatar'
-                    />
-                  </div>
-                  <p>{commit.commit.author.name}</p>
+              <div className='author-info'>
+                <div className='circle'>
+                  <img
+                    src={commit.author.avatar_url}
+                    alt=''
+                    className='avatar'
+                  />
                 </div>
-                <p className='commit-message'>{commit.commit.message}</p>
+                <p>{commit.commit.author.name}</p>
               </div>
+              <p className='commit-message'>{commit.commit.message}</p>
               <p>23:30 28/04/2021</p>
             </div>
           ))}

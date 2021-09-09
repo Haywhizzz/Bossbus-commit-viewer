@@ -27,7 +27,7 @@ const SuggestedRepos = [
   }
 ]
 
-const HomePage = ({ history, ...props }) => {
+const HomePage = ({ history }) => {
   const [search, setSearch] = useState('')
 
   const handleSubmit = async e => {
@@ -47,12 +47,10 @@ const HomePage = ({ history, ...props }) => {
     }
   }
 
-  console.log({ props })
-
   return (
     <div className='HomePage'>
       <NavBar />
-        <div className='hero'>
+      <div className='hero'>
         <h1 className='heading1 max-w-2xl mx-auto text-8xl font-semibold text-dark1 leading-tight'>
           Discover the world of code
         </h1>
@@ -80,6 +78,12 @@ const HomePage = ({ history, ...props }) => {
       <div className='suggested-links'>
         {SuggestedRepos.map(({ id, repo }) => (
           <span key={id} className='suggested-link'>
+            {repo}
+          </span>
         ))}
       </div>
+    </div>
+  )
+}
+
 export default HomePage
