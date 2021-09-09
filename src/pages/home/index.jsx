@@ -37,7 +37,6 @@ const HomePage = ({ history }) => {
     if (validate === true) {
       history.push({
         pathname: '/search-result',
-        search: search,
         state: { search }
       })
     } else {
@@ -46,6 +45,14 @@ const HomePage = ({ history }) => {
       )
     }
   }
+
+   const handleSuggestionClick = repo => {
+    history.push({
+      pathname: '/search-result',
+      state: { search: repo }
+    })
+  }
+
 
   return (
     <div className='HomePage'>
@@ -77,7 +84,11 @@ const HomePage = ({ history }) => {
       <p className='suggestion'>Or pick one of these suggested repos</p>
       <div className='suggested-links'>
         {SuggestedRepos.map(({ id, repo }) => (
-          <span key={id} className='suggested-link'>
+          <span
+            onClick={() => handleSuggestionClick(repo)}
+            key={id}
+            className='suggested-link'
+          >
             {repo}
           </span>
         ))}

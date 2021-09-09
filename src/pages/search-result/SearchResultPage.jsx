@@ -6,7 +6,7 @@ import axios from 'axios'
 import Button from '../../components/buttons/Button'
 import SearchIcon from '../../components/search/SearchIcon'
 
-import { validateInput } from '../../utils/index'
+import { formattedDate, validateInput } from '../../utils/index'
 
 import './Search.scss'
 
@@ -19,7 +19,7 @@ const SearchResultPage = ({ location, ...props }) => {
   const getAllCommits = async () => {
     try {
       const res = await axios.get(
-        `https://api.github.com/repos/${searchQuery}/commits?per_page=10`
+        `https://api.github.com/repos/${searchQuery}/commits?per_page=10&sort=updated&direction=asc`
       )
       setLoading(true)
       setCommits(res.data)
@@ -47,12 +47,13 @@ const SearchResultPage = ({ location, ...props }) => {
     getAllCommits()
   }, [])
 
-  if (error)
+  if (error) {
     return (
       <h2 style={{ color: 'red', textAlign: 'center', marginTop: '2rem' }}>
         {error}
       </h2>
     )
+  }
 
   return (
     <div className='SearchPage'>
@@ -94,8 +95,12 @@ const SearchResultPage = ({ location, ...props }) => {
                 </div>
                 <p>{commit.commit.author.name}</p>
               </div>
-              <p className='commit-message'>{commit.commit.message}</p>
-              <p>23:30 28/04/2021</p>
+              <p className='commit-message'>
+                {commit.commit.message.split(')')[0]})
+              </p>
+              <p className='date'>
+                {formattedDate(commit.commit.committer.date)}
+              </p>
             </div>
           ))}
         </div>
